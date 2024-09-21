@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:wght@100;400;700&display=swap");
-
+:root{
+  --purple: #7342d6;
+  --light-purple: rgba(115, 66, 214, 0.1);
+}
 * {
   padding: 0;
   margin: 0;
@@ -37,19 +40,19 @@ li {
   margin-left: 16px;
   text-decoration: none;
   font-size: 20px;
-  color: #7342d6;
+  color: var(--purple);
   font-weight: bold;
   padding: 8px;
 }
 .nav__link--primary {
-  border: 2px solid #7342d6;
+  border: 2px solid var(--purple);
   border-radius: 4px;
 }
 .nav__link--primary:hover {
   text-decoration: none;
 }
 .purple {
-  color: #7342d6;
+  color: var(--purple);
 }
 img {
   width: 100%;
@@ -58,7 +61,7 @@ img {
 }
 h1 {
   font-size: 56px;
-  color: #7342d6;
+  color: var(--purple);
   margin-bottom: 24px;
   text-align: center;
 }
@@ -66,6 +69,12 @@ h2 {
   font-size: 32px;
   margin-bottom: 32px;
   text-align: center;
+}
+p{
+  line-height: 1.5;
+}
+section:nth-child(even) {
+  background-color: var(--light-purple);
 }
 
 /* 
@@ -75,7 +84,7 @@ LANDING PAGE
 */
 
 #landing {
-  background-color: rgba(115, 66, 214, 0.1);
+  background-color: var(--light-purple);
 }
 
 header {
@@ -101,7 +110,7 @@ button {
   cursor: pointer;
 }
 .btn {
-  background-color: #7342d6;
+  background-color: var(--purple);
   color: #fff;
   padding: 12px 24px;
   font-size: 20px;
@@ -118,6 +127,8 @@ button {
 
 .header__img--wrapper{
   padding: 20px;
+  /* this: maintains the header img on top of the waves (z-index higher than the wave) */
+  z-index:2;
 
 }
 .container{
@@ -135,6 +146,52 @@ margin: 0 auto;
 HIGHLIGHTS 
 
 */
+
+#highlights {
+  position: relative;
+  max-width: 100vw;
+}
+
+
+#highlights:before{
+  background: url(./assets/wave.svg);
+  content: "";
+  position: absolute;
+  /* this: our screen gets wider the wider the screen gets */
+  width: 101vw;
+  /* this: our screen gets higher the wider the screen gets */
+  height: 12vw;
+  /* this: helps position absolute it somehow? */
+  top: 1px;
+  z-index: 1;
+  /* this: makes the background cover the entire width */
+  background-size: cover;
+  /* this: this + background-size: cover = helps not repeat across */
+  background-repeat: no-repeat;
+  /* this: moves wave up. removing this will cause it to be over the highlights title */
+  transform: translateY(-100%);
+}
+#highlights:after{
+  background: url(./assets/wave.svg);
+
+  content: "";
+  position: absolute;
+  /* this: our screen gets wider the wider the screen gets */
+  width: 101vw;
+  /* this: our screen gets higher the wider the screen gets */
+  height: 12vw;
+  bottom: 1px;
+  z-index: 1;
+  /* this: makes the background cover the entire width */
+  background-size: cover;
+  /* this: don`t know what it`s for */
+  background-repeat: no-repeat;
+  /* this: moves wave up. removing this will cause it to be over the highlights title */
+  transform:translateY(100%) rotate(180deg);
+  /* transform: rotate(180deg); */
+
+}
+
 
 .highlight__wrapper {
   display: flex;
@@ -156,7 +213,7 @@ HIGHLIGHTS
 
 
 .highlight__img {
-  border: 2px solid #7342d6;
+  border: 2px solid var(--purple);
   width: 100px;
   height: 100px;
   display: flex;
@@ -171,7 +228,36 @@ HIGHLIGHTS
   margin-bottom: 8px;
 }
 
+.highlight__para{
+text-align: center;
+max-width: 280px;
+}
+.highlight__subtitle{
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+/* 
+
+FEATURES
+
+*/
+
+#features {
+  background-color: var(--light-purple);
+}
 
 
+
+/* 
+
+TOP TECH TIPS:
+
+when you have a problem with something being over or under the other, you can use z-index to change the order of the elements
+
+pseudo element: ::before and ::after are used to add content before or after (vertical page wise) the element. ex: adding the wave to the highlights section
+position: absolute; useful when adding something glued to another element. ex: the wave in the highlights section or a span on the side of a title
+
+*/
 
 
