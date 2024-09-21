@@ -1,13 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:wght@100;400;700&display=swap");
-:root{
+:root {
   --purple: #7342d6;
   --light-purple: rgba(115, 66, 214, 0.1);
 }
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+}
+html {
+ scroll-behavior: smooth;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 nav {
@@ -28,10 +37,12 @@ nav {
 .logo {
   width: 160px;
 }
+
 ul {
   display: flex;
   list-style: none;
 }
+
 li {
   list-style-type: none;
 }
@@ -44,37 +55,109 @@ li {
   font-weight: bold;
   padding: 8px;
 }
+
 .nav__link--primary {
   border: 2px solid var(--purple);
   border-radius: 4px;
 }
+
 .nav__link--primary:hover {
   text-decoration: none;
 }
+
 .purple {
   color: var(--purple);
 }
+
 img {
   width: 100%;
   max-height: 50vh;
   padding: 20px;
 }
+
 h1 {
   font-size: 56px;
   color: var(--purple);
   margin-bottom: 24px;
   text-align: center;
 }
+
 h2 {
   font-size: 32px;
   margin-bottom: 32px;
   text-align: center;
 }
-p{
+
+p {
   line-height: 1.5;
 }
+
 section:nth-child(even) {
   background-color: var(--light-purple);
+}
+
+.no-cursor {
+  cursor: not-allowed;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 
+
+BURGER MENU
+
+*/
+
+.btn__menu{
+  background-color: transparent;
+  font-size: 40px;
+  text-align: center;
+  border: none;
+  color: var(--purple);
+}
+
+
+/* todo: entender como ele faz esse burger menu */
+.menu__backdrop{
+  /* this: so that it does not affect any other elements in the page */
+  position: absolute;
+  background-color: #242424;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn__menu--close{
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  padding: 8px;
+  color: #fff;
+}
+
+.menu__links{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu__link{
+  font-size: 40px;
+  color: #fff;
+}
+.menu__list{
+  padding: 32px 0;
 }
 
 /* 
@@ -125,20 +208,19 @@ button {
   margin-bottom: 24px;
 }
 
-.header__img--wrapper{
+.header__img--wrapper {
   padding: 20px;
   /* this: maintains the header img on top of the waves (z-index higher than the wave) */
-  z-index:2;
-
+  z-index: 2;
 }
-.container{
- padding: 56px 0;
+.container {
+  padding: 56px 0;
 }
 
-.row{
-width: 100%;
-max-width: 1200px;
-margin: 0 auto;  
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* 
@@ -152,8 +234,8 @@ HIGHLIGHTS
   max-width: 100vw;
 }
 
-
-#highlights:before{
+#highlights:before,
+#highlights:after {
   background: url(./assets/wave.svg);
   content: "";
   position: absolute;
@@ -161,37 +243,25 @@ HIGHLIGHTS
   width: 101vw;
   /* this: our screen gets higher the wider the screen gets */
   height: 12vw;
-  /* this: helps position absolute it somehow? */
-  top: 1px;
-  z-index: 1;
-  /* this: makes the background cover the entire width */
-  background-size: cover;
-  /* this: this + background-size: cover = helps not repeat across */
-  background-repeat: no-repeat;
-  /* this: moves wave up. removing this will cause it to be over the highlights title */
-  transform: translateY(-100%);
-}
-#highlights:after{
-  background: url(./assets/wave.svg);
-
-  content: "";
-  position: absolute;
-  /* this: our screen gets wider the wider the screen gets */
-  width: 101vw;
-  /* this: our screen gets higher the wider the screen gets */
-  height: 12vw;
-  bottom: 1px;
   z-index: 1;
   /* this: makes the background cover the entire width */
   background-size: cover;
   /* this: don`t know what it`s for */
   background-repeat: no-repeat;
-  /* this: moves wave up. removing this will cause it to be over the highlights title */
-  transform:translateY(100%) rotate(180deg);
-  /* transform: rotate(180deg); */
-
 }
 
+#highlights:before {
+  top: 1px;
+  /* this: moves wave up. removing this will cause it to be over the highlights title */
+  transform: translateY(-100%);
+}
+
+#highlights:after {
+  bottom: 1px;
+  /* this: moves wave up. removing this will cause it to be over the highlights title */
+  transform: translateY(100%) rotate(180deg);
+  /* transform: rotate(180deg); */
+}
 
 .highlight__wrapper {
   display: flex;
@@ -209,9 +279,6 @@ HIGHLIGHTS
   /* width: calc(100% / 3); */
 }
 
-
-
-
 .highlight__img {
   border: 2px solid var(--purple);
   width: 100px;
@@ -224,15 +291,15 @@ HIGHLIGHTS
   margin: 24px auto;
 }
 .subtitle,
-.highlight__para{
+.highlight__para {
   margin-bottom: 8px;
 }
 
-.highlight__para{
-text-align: center;
-max-width: 280px;
+.highlight__para {
+  text-align: center;
+  max-width: 280px;
 }
-.highlight__subtitle{
+.highlight__subtitle {
   font-size: 20px;
   margin-bottom: 16px;
 }
@@ -244,10 +311,104 @@ FEATURES
 */
 
 #features {
-  background-color: var(--light-purple);
+  padding-top: 8vw;
 }
 
+.book__img {
+  max-height: 50vh;
+}
 
+.books {
+  display: flex;
+  flex-wrap: wrap;
+}
+.book {
+  width: 25%;
+  padding: 24px;
+}
+.book__img {
+  max-height: 380px;
+  padding: 0;
+  transition: all 300ms ease;
+  /* this: makes it clear the book can not be picked */
+  cursor: not-allowed;
+}
+
+.book__img--wrapper {
+  margin-bottom: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  /* this: so that the book img doesn`t come out of the radius when hovering it */
+  display: flex;
+}
+
+.book:hover .book__img {
+  transform: scale(1.03);
+}
+.book__title {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.book__title:hover {
+  text-decoration: underline;
+  cursor: not-allowed;
+}
+
+.book__ratings {
+  margin-bottom: 8px;
+  color: #fabf2a;
+}
+.book__price--normal {
+  text-decoration: line-through;
+  padding-right: 6px;
+  color: #bfbfbf;
+}
+
+/* 
+
+CTA
+
+*/
+
+.row__column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+/* 
+
+FOOTER
+
+*/
+
+footer {
+  background-color: #242424;
+}
+
+.footer__logo {
+  display: flex;
+}
+
+.footer__logo--img {
+  width: 240px;
+  /* this: grayscale(1) makes an image black -> then invert(1) inverts it to white */
+  filter: grayscale(1) invert(1);
+}
+
+.footer__link,
+.footer__copyright {
+  color: #fff;
+}
+
+.footer__list {
+  margin: 20px 0 24px 0;
+}
+
+.footer__link {
+  padding: 0 8px;
+}
 
 /* 
 
@@ -259,5 +420,3 @@ pseudo element: ::before and ::after are used to add content before or after (ve
 position: absolute; useful when adding something glued to another element. ex: the wave in the highlights section or a span on the side of a title
 
 */
-
-
