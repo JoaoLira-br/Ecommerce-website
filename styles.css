@@ -10,8 +10,9 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+
 html {
- scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -100,7 +101,7 @@ section:nth-child(even) {
   cursor: not-allowed;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -114,17 +115,17 @@ BURGER MENU
 
 */
 
-.btn__menu{
+.btn__menu {
   background-color: transparent;
   font-size: 40px;
   text-align: center;
   border: none;
   color: var(--purple);
+  display: none;
 }
 
-
 /* todo: entender como ele faz esse burger menu */
-.menu__backdrop{
+.menu__backdrop {
   /* this: so that it does not affect any other elements in the page */
   position: absolute;
   background-color: #242424;
@@ -133,12 +134,30 @@ BURGER MENU
   right: 0;
   bottom: 0;
   z-index: 100;
-  display: flex;
   justify-content: center;
   align-items: center;
+  /* these: visibility:visible + opacity:0 = item invisible but existent in the DOM. 
+  display:none = item invisible and NOT existent in the DOM therefore NOT animable
+  */
+  transition: all 300ms ease;
+  visibility: hidden;
+  opacity: 0;
 }
 
-.btn__menu--close{
+/* this: css-js logic, once the class menu--open exists, display the menu__backdrop  */
+.menu--open .menu__backdrop {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* this: makes so that burger menu fiils entire page & cannot scroll down so you are forced to choose the items */
+.menu--open {
+  max-height: 100vh;
+  overflow-y: hidden;
+}
+
+.btn__menu--close {
   position: absolute;
   right: 20px;
   top: 10px;
@@ -146,17 +165,17 @@ BURGER MENU
   color: #fff;
 }
 
-.menu__links{
+.menu__links {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.menu__link{
+.menu__link {
   font-size: 40px;
   color: #fff;
 }
-.menu__list{
+.menu__list {
   padding: 32px 0;
 }
 
@@ -266,14 +285,19 @@ HIGHLIGHTS
 .highlight__wrapper {
   display: flex;
   justify-content: center; /* Center the items */
+
   gap: 40px; /* Add space between the items */
+  flex-wrap: wrap; /* Wrap the items */
 }
 
 .highlight {
   /* display: flex;
   flex-direction: column;
   justify-content: center; */
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   padding: 0 24px;
   /* Remove the fixed width to allow flexible sizing */
   /* width: calc(100% / 3); */
@@ -296,12 +320,15 @@ HIGHLIGHTS
 }
 
 .highlight__para {
-  text-align: center;
+text-align: center;
   max-width: 280px;
+  /* margin: 0 auto; */
 }
 .highlight__subtitle {
   font-size: 20px;
   margin-bottom: 16px;
+  /* text-align: center; */
+
 }
 
 /* 
@@ -408,6 +435,39 @@ footer {
 
 .footer__link {
   padding: 0 8px;
+}
+
+@media (max-width: 550px) {
+  .nav__links {
+    display: none;
+  }
+  .btn__menu {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .header__description {
+    padding: 0 24px;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 26px;
+  }
+  button {
+    font-size: 18px;
+  }
+  .book {
+    width: 50%;
+  }
+  .highlight{
+    width: 100%;
+  }
+  .highlight:not(:last-child) {
+    margin-bottom: 24px;
+  }
 }
 
 /* 

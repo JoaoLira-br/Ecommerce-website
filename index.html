@@ -9,6 +9,7 @@
       src="https://kit.fontawesome.com/c8e4d183c2.js"
       crossorigin="anonymous"
     ></script>
+    <script src="index.js"></script>
   </head>
   <body>
     <section id="landing">
@@ -20,18 +21,18 @@
             <li><a href="#" class="nav__link">Contacts</a></li>
             <li><a href="#" class="nav__link nav__link--primary">Books</a></li>
           </ul>
+          <button class="btn__menu" onClick="openMenu()"><i class="fas fa-bars"></i>
         </div>
-        <button class="btn__menu"><i class="fas fa-bars">
 
-        </i></button>
+        </button>
         <div class="menu__backdrop">
-            <button class="btn__menu btn__menu--close">
+            <button class="btn__menu btn__menu--close" onClick="closeMenu()">
                 <i class="fas fa-times"></i>
             </button>
             <ul class="menu__links">
-                <li class="menu__list"><a href="#" class="menu__link">Home</a></li>
-                <li class="menu__list "><a href="#features" class="menu__link">Books</a></li>
-                <li class="menu__list no-cursor"><a href="" class="menu__link">Contacts</a></li>
+                <li class="menu__list"><a href="#" class="menu__link" onClick="closeMenu()">Home</a></li>
+                <li class="menu__list "><a href="#features" class="menu__link" onClick="closeMenu()">Books</a></li>
+                <li class="menu__list no-cursor"><a href="" class="menu__link" onClick="closeMenu()">Contacts</a></li>
             </ul>
         </div>
       </nav>
@@ -42,7 +43,9 @@
             <h2>
               Find your dream book with <span class="purple">Library</span>
             </h2>
-            <button class="btn">Browse books</button>
+            <a href="#features">
+                <button class="btn">Browse books</button>
+            </a>
           </div>
           <figure class="header__img--wrapper">
             <img src="./assets/Undraw_Books.svg" alt="" />
@@ -99,8 +102,8 @@
             <div class="container">
               <div class="row">
                 <h2 class="section__title">
+                    Featured <span class="purple">Books</span>
                 </h2>
-                Featured <span class="purple">Books</span>
               <div class="books">
                 <div class="book">
                   <figure class="book__img--wrapper">
